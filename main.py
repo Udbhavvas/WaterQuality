@@ -2,9 +2,9 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-from scikit-learn.utils import shuffle
-from scikit-learn.model_selection import train_test_split
-from scikit-learn import svm
+from sklearn.utils import shuffle
+from sklearn.model_selection import train_test_split
+from sklearn import svm
 import pandas as pd
 import ntpath
 import random
@@ -16,12 +16,13 @@ data = pd.read_csv('water_potability.csv', names=columns, skiprows=1)
 pd.set_option('display.max_colwidth', None)
 
 def filtering(arr):
-    if np.nan in arr:
+    temp = np.isnan(arr)
+    if True in temp:
         return False
     else:
         return True
 
-data.head()
+print(data.head())
 samples = len(data)
 y = data["Potability"]
 data = data.drop("Potability", axis=1)
@@ -35,3 +36,5 @@ for i in filtered_x:
 
 # model = svm.SVC()
 # model.fit(filtered_x,y)
+
+print(x[0])
