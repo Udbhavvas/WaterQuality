@@ -30,7 +30,9 @@ class SVM:
     def predict(self, X):
         approx = np.dot(X, self.w) - self.b
         return np.sign(approx)
-
+        
+    def reset(self):
+        self.w = np.zeros(len(self.w))
 
 # Testing
 # Imports
