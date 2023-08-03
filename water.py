@@ -35,26 +35,53 @@ y = np.where(y == 0, -1, 1)
 X = np.array(X)
 y = np.array(y)
 
-split_array = np.array_split(X, 4)
-A = split_array[0]
-B = split_array[1]
-C = split_array[2]
-D = split_array[3]
-X_train = np.concatenate((A,B,D),axis = 0)
-X_test = C
+num_sections = 4
+test_section = 2
 
-split_array = np.array_split(y, 4)
-A = split_array[0]
-B = split_array[1]
-C = split_array[2]
-D = split_array[3]
-y_train = np.concatenate((A,B,D),axis = 0)
-y_test = C
+split_array = np.array_split(X, num_sections)
+for i in split_array:
+      if(i != test_section):
+            X_train = np.concatenate(X_train, i)
+X_test = split_array[test_section]
+
+
+split_array = np.array_split(y, num_sections)
+for i in split_array:
+      if(i != test_section):
+            y_train = np.concatenate(y_train, i)
+y_test = split_array[test_section]
+      
+# split_array = np.array_split(X, 8)
+# A = split_array[0]
+# B = split_array[1]
+# C = split_array[2]
+# D = split_array[3]
+# E = split_array[4]
+# F = split_array[5]
+# G = split_array[6]
+# H = split_array[7]
+# X_train = np.concatenate((A,B,C,D,E,F,G),axis = 0)
+# X_test = H
+
+# split_array = np.array_split(y, 8)
+# A = split_array[0]
+# B = split_array[1]
+# C = split_array[2]
+# D = split_array[3]
+# E = split_array[4]
+# F = split_array[5]
+# G = split_array[6]
+# H = split_array[7]
+# y_train = np.concatenate((A,B,C,D,E,F,G),axis = 0)
+# y_test = H
 
 
 ourSVM = SVM.SVM()
 
-ourSVM.fit(X_train, y_train)
+ourSVM.set(X_train)
+
+for i in X_train:
+    ourSVM.fit(X_train, y_train)
 
 predictions = ourSVM.predict(X_test)
 

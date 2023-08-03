@@ -8,14 +8,19 @@ class SVM:
         self.w = None
         self.b = None
 
+    def set_weights(self, X):
+        n_samples, n_features = X.shape
+        self.b = 0
+        self.w = np.random.random_sample(n_features)
+        for i in self.w:
+            i = i * 2 - 1
+
     def fit(self, X, y):
         n_samples, n_features = X.shape
 
+
         y_ = np.where(y <= 0, -1, 1)
 
-        # init weights
-        self.w = np.zeros(n_features)
-        self.b = 0
 
         for _ in range(self.n_iters):
             for idx, x_i in enumerate(X):
