@@ -38,6 +38,13 @@ class SVM:
         
     def reset(self):
         self.w = np.zeros(len(self.w))
+    
+    def accuracy(self, y_true, y_pred):
+        total = len(y_true)
+    
+        accuracy = np.sum(y_true == y_pred) / total
+
+        return accuracy
 
 # Testing
 # Imports
