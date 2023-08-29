@@ -41,7 +41,7 @@ class SVM:
     
     def accuracy(self, y_true, y_pred):
         total = len(y_true)
-    
+        print("Udbav's mom")
         accuracy = np.sum(y_true == y_pred) / total
 
         return accuracy
