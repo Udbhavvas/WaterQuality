@@ -6,6 +6,7 @@ from sklearn import datasets
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
+
 # Obtaining/Cleaning CSV file
 columns = ['ph', 'Hardness', 'Solids', 'Chloramines', 'Sulfate', 'Conductivity', 'Organic_carbon', 'Trihalomethanes', 'Turbidity', 'Potability']
 data = pd.read_csv('water_potability.csv', names=columns, skiprows=1)
