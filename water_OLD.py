@@ -1,7 +1,7 @@
 # Imports
 import pandas as pd
 import numpy as np
-import SVM
+import SVM_OLD
 from sklearn import datasets
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
@@ -32,7 +32,7 @@ data = data.drop("Potability", axis=1)
 # Reassign labels as -1 and 1
 # y = np.where(y == 0, -1, 1)
 
-ourSVM = SVM.SVM()
+ourSVM = SVM_OLD.SVM()
 
 #fake data set
 X, y = datasets.make_blobs(
