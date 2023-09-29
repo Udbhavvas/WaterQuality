@@ -6,7 +6,7 @@ class SVM:
         # Constructor
 
         self.w = None
-        self.b = None
+        self.b = 0
         self.learning_rate = learning_rate
         self.epochs = epochs
 
@@ -26,30 +26,33 @@ class SVM:
         y = np.array(y)
         
         # Sets random weights ranging from -1 to +1
-        num_samples, num_features = X.shape()
+        num_samples, num_features = X.shape
         self.w = np.random.random_sample(num_features)
         self.w = self.w * 2 - 1
 
         # Find hyperplane using stochastic gradient descent with hinge loss
         for _ in range(self.epochs):
             for idx, V in enumerate(X):
-                if y[idx] * (np.dot(self.w,V)) < 1:
-                    sum = []
-                    for i in range(num_samples):
-                        sum += y[i] * V
-                    sum /= num_samples
-                    self.w = self.w - self.learning_rate * (1 - sum)
+                if y[idx] * (np.dot(self.w,np.transpose(V))) < 1:
+                    hinge_loss_gradient = y[idx] * V
+                    self.w = self.w - self.learning_rate * (hinge_loss_gradient)
+                    self.b = self.b + y[idx]
 
     def accuracy(self, y_true, y_pred):
+        y_true = np.array(y_true)
+        y_pred = np.array(y_pred)
 
         total = len(y_true)
-        accuracy = np.sum(y_true == y_pred) / total
+
+        accuracy = np.sum(y_true == np.transpose(y_pred)) / total
         return accuracy
 
     def predict(self, X):
         # Include bias values somehow
-        scores = np.dot(X, self.w)
-        predictions = np.sign(scores)
+        predictions = []
+        for i in X:
+            scores = np.dot(i, np.transpose(self.w))
+            predictions.append(np.sign(scores))
 
         return predictions
 

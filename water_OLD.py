@@ -84,8 +84,6 @@ def visualize_svm():
         plt.show()
         return
 
-
-
 j = 0
 while j < num_sections:
       test_section = j
