@@ -7,6 +7,7 @@ from matplotlib import pyplot as plt
 
 from sklearn.model_selection import train_test_split
 
+
 ##################
 n_pts = 1000
 np.random.seed(0)
@@ -35,15 +36,32 @@ plt.scatter(Class2[0], Class2[1])
 # plt.scatter(X[n_pts:,0], X[n_pts:,1])
 plt.show()
 
+
 #Class1[0] Class2[0]
 svm = SVM.SVM()
 svm.train(X,Y)
-y_pred = svm.predict(X,Y)
+y_pred = svm.predict(X)
 print(svm.accuracy(Y, y_pred))
+
+
+
+print(svm.w)
+w1 = svm.w[0]
+w2 = svm.w[1]
+
+b = svm.b
+
+
+y_start = (-w1/w2) * (-5) + b/w2
+y_end = (-w1/w2) * (20) + b/w2
+
+
 ########################
 
 
+plt.Axes.plot([-5, 20], [y_start, y_end], linestyle='-', color='blue', label='My Line')
 
+plt.savefig("plot.png")
 
 # # Instatiate SVM object
 # SVM_instance = SVM.SVM(learning_rate=0.05, epochs=2000)
