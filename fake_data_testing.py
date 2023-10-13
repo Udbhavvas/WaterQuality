@@ -33,25 +33,42 @@ plt.scatter(Class1[0], Class1[1])
 
 Class2 = [X[n_pts:,0], X[n_pts:,1]]
 plt.scatter(Class2[0], Class2[1])
+
+print("SDSDSDDS")
+
 # plt.scatter(X[n_pts:,0], X[n_pts:,1])
-plt.show()
+# plt.show()
 
 
 #Class1[0] Class2[0]
 svm = SVM.SVM()
+print("REACHED THIS FAR1")
 svm.train(X,Y)
+print("REACHED THIS FAR2")
 y_pred = svm.predict(X)
 print(svm.accuracy(Y, y_pred))
 
 
 
 print(svm.w)
+
 w1 = svm.w[0]
 w2 = svm.w[1]
 
 b = svm.b
 
+print("REACHED THIS FAR3")
+print(f"W1: {w1}")
+print(f"W2: {w2}")
 
+###
+g = [1, 2]
+n = [4, 10]
+
+# Create a line plot
+plt.plot(g, n)
+
+######
 y_start = (-w1/w2) * (-5) + b/w2
 y_end = (-w1/w2) * (20) + b/w2
 

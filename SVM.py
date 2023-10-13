@@ -4,7 +4,7 @@ class SVM:
 
     def __init__(self, learning_rate=0.05, epochs=1000):
         # Constructor
-
+        print("CONSTRUCTING")
         self.w = None
         self.b = 0
         self.learning_rate = learning_rate
@@ -35,10 +35,14 @@ class SVM:
         # Find hyperplane using stochastic gradient descent with hinge loss
         for _ in range(self.epochs):
             for idx, V in enumerate(X):
-                if y[idx] * (np.dot(self.w,np.transpose(V[0]))) < 1:
-                    hinge_loss_gradient = y[idx] * V[0]
+
+                
+
+                if y[idx] * (np.dot(self.w,np.transpose(X[idx].ravel()))) < 1:
+                    hinge_loss_gradient = y[idx] * X[idx].ravel()
                     #print(V)
-                    self.w = self.w - self.learning_rate * (hinge_loss_gradient)
+                    #self.w = self.w - self.learning_rate * (hinge_loss_gradient)
+                    self.w = self.w -np.multiply(self.learning_rate, hinge_loss_gradient)
                     self.b = self.b + y[idx]
         
         
