@@ -41,7 +41,7 @@ print("SDSDSDDS")
 
 
 #Class1[0] Class2[0]
-svm = SVM.SVM()
+svm = SVM.SVM(learning_rate=0.01, epochs=2000)
 print("REACHED THIS FAR1")
 svm.train(X,Y)
 print("REACHED THIS FAR2")
@@ -52,6 +52,8 @@ print(svm.accuracy(Y, y_pred))
 
 print(svm.w)
 
+
+
 w1 = svm.w[0]
 w2 = svm.w[1]
 
@@ -61,22 +63,16 @@ print("REACHED THIS FAR3")
 print(f"W1: {w1}")
 print(f"W2: {w2}")
 
-###
-g = [1, 2]
-n = [4, 10]
-
-# Create a line plot
-plt.plot(g, n)
 
 ######
-y_start = (-w1/w2) * (-5) + b/w2
-y_end = (-w1/w2) * (20) + b/w2
+y_start = (-w1/w2) * (-5) - b/w2
+y_end = (-w1/w2) * (20) - b/w2
 
 
 ########################
+plt.plot([-5, 20], [y_start, y_end])
 
-
-plt.Axes.plot([-5, 20], [y_start, y_end], linestyle='-', color='blue', label='My Line')
+#plt.Axes.plot([-5, 20], [y_start, y_end], linestyle='-', color='blue', label='My Line')
 
 plt.savefig("plot.png")
 

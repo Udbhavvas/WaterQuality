@@ -6,7 +6,7 @@ class SVM:
         # Constructor
         print("CONSTRUCTING")
         self.w = None
-        self.b = 0
+        self.b = 1000
         self.learning_rate = learning_rate
         self.epochs = epochs
 
@@ -22,7 +22,7 @@ class SVM:
         # Returns nothing
 
         # Makes sure inputs are numpy compatible
-        X = np.matrix(X)
+        X = np.array(X)
         y = np.array(y)
         
         
@@ -38,12 +38,12 @@ class SVM:
 
                 
 
-                if y[idx] * (np.dot(self.w,np.transpose(X[idx].ravel()))) < 1:
-                    hinge_loss_gradient = y[idx] * X[idx].ravel()
+                if y[idx] * (np.dot(self.w,np.transpose(V))) < 1:
+                    hinge_loss_gradient = y[idx] * V
                     #print(V)
                     #self.w = self.w - self.learning_rate * (hinge_loss_gradient)
                     self.w = self.w -np.multiply(self.learning_rate, hinge_loss_gradient)
-                    self.b = self.b + y[idx]
+                    self.b = self.b + self.learning_rate * y[idx]
         
         
 
