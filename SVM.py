@@ -6,7 +6,7 @@ class SVM:
         # Constructor
         print("CONSTRUCTING")
         self.w = None
-        self.b = 1000
+        self.b = 0
         self.learning_rate = learning_rate
         self.epochs = epochs
 
@@ -43,6 +43,8 @@ class SVM:
                     #print(V)
                     #self.w = self.w - self.learning_rate * (hinge_loss_gradient)
                     self.w = self.w -np.multiply(self.learning_rate, hinge_loss_gradient)
+                    self.b = self.b + self.learning_rate * y[idx]
+                else:
                     self.b = self.b + self.learning_rate * y[idx]
         
         
