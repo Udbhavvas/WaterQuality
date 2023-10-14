@@ -44,8 +44,6 @@ class SVM:
                     #self.w = self.w - self.learning_rate * (hinge_loss_gradient)
                     self.w = self.w -np.multiply(self.learning_rate, hinge_loss_gradient)
                     self.b = self.b + self.learning_rate * y[idx]
-                else:
-                    self.b = self.b + self.learning_rate * y[idx]
         
         
 
