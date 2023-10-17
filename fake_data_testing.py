@@ -11,10 +11,10 @@ from sklearn.model_selection import train_test_split
 ##################
 n_pts = 1000
 np.random.seed(0)
-Xa = np.array([np.random.normal(15, 1.75, n_pts),
-              np.random.normal(15, 1.75, n_pts)]).T
-Xb = np.array([np.random.normal(8, 1.75, n_pts),
+Xa = np.array([np.random.normal(8, 1.75, n_pts),
               np.random.normal(6, 1.75, n_pts)]).T
+Xb = np.array([np.random.normal(15, 1.75, n_pts),
+              np.random.normal(15, 1.75, n_pts)]).T
 
 X = np.vstack((Xa, Xb))
 negative_ones = np.full((1, n_pts), -1)
@@ -41,12 +41,12 @@ print("SDSDSDDS")
 
 
 #Class1[0] Class2[0]
-svm = SVM.SVM(learning_rate=0.01, epochs=2000)
+svm = SVM.SVM(learning_rate=0.01, epochs=6000)
 print("REACHED THIS FAR1")
 svm.train(X,Y)
 print("REACHED THIS FAR2")
 y_pred = svm.predict(X)
-print(svm.accuracy(Y, y_pred))
+print(f"accuracy = {svm.accuracy(Y, y_pred)}")
 
 
 
@@ -57,16 +57,17 @@ print(svm.w)
 w1 = svm.w[1]
 w2 = svm.w[2]
 
-b = svm.b
+b = svm.w[0]
 
 print("REACHED THIS FAR3")
 print(f"W1: {w1}")
 print(f"W2: {w2}")
+print(f"B: {b}")
 
 
 ######
-y_start = (-w1/w2) * (-5) - b/w2
-y_end = (-w1/w2) * (20) - b/w2
+y_start = (-1  * w1/w2) * (-5) - b/w2
+y_end = (-1 * w1/w2) * (20) - b/w2
 
 
 ########################

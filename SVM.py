@@ -2,7 +2,7 @@ import numpy as np
 
 class SVM:
 
-    def __init__(self, learning_rate=0.05, epochs=1000):
+    def __init__(self, learning_rate=0.01, epochs=1000):
         # Constructor
         print("CONSTRUCTING")
         self.w = None
@@ -37,16 +37,20 @@ class SVM:
             for idx, V in enumerate(X):
                 # Use numpy.insert() to add the value at the front (position 0)
                 V = np.insert(V, 0, [1])
+                # 1 x1 x2
                 #print(V)
+
                 if y[idx] * (np.dot(self.w,np.transpose(V))) < 1:
                     #                     y[1] * V[(1 + p) x 1]
                     hinge_loss_gradient = y[idx] * V
+
                     #self.w = self.w - self.learning_rate * (hinge_loss_gradient)
-                    self.w = self.w - np.multiply(self.learning_rate, hinge_loss_gradient)
+                    self.w = self.w + np.multiply(self.learning_rate, hinge_loss_gradient)
                     #self.b = self.b + self.learning_rate * y[idx]
 
 
         self.b = self.w[0]
+
          # Magic numberr working for b           
         #self.b = 23*(-1 * self.w[1])
 
@@ -72,8 +76,8 @@ class SVM:
         # Include bias values somehow
         predictions = []
         for i in X:
-            X = np.insert(X, 0, [1])
-            scores = np.dot(i, np.transpose(self.w)) + self.b
+            I = np.insert(i, 0, [1])
+            scores = np.dot(I, np.transpose(self.w))
             predictions.append(np.sign(scores))
 
         return predictions
