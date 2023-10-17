@@ -54,8 +54,8 @@ print(svm.w)
 
 
 
-w1 = svm.w[0]
-w2 = svm.w[1]
+w1 = svm.w[1]
+w2 = svm.w[2]
 
 b = svm.b
 
