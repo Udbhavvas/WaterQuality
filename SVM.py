@@ -39,7 +39,6 @@ class SVM:
                 V = np.insert(V, 0, [1])
                 # 1 x1 x2
                 #print(V)
-                print(y[idx].shape)
                 if y[idx] * (np.dot(self.w,np.transpose(V))) < 1:
                     #                     y[1] * V[(1 + p) x 1]
                     hinge_loss_gradient = y[idx] * V

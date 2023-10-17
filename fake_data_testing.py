@@ -20,7 +20,7 @@ X = np.vstack((Xa, Xb))
 negative_ones = np.full((1, n_pts), -1)
 #print(y)
 positive_ones = np.full((1, n_pts), 1)
-Y = np.matrix(np.append(negative_ones, positive_ones))
+Y = np.append(negative_ones, positive_ones)
  
 
 #Class 1 X and Y values
