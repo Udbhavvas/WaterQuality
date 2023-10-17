@@ -39,7 +39,7 @@ class SVM:
                 V = np.insert(V, 0, [1])
                 # 1 x1 x2
                 #print(V)
-
+                print(y[idx].shape)
                 if y[idx] * (np.dot(self.w,np.transpose(V))) < 1:
                     #                     y[1] * V[(1 + p) x 1]
                     hinge_loss_gradient = y[idx] * V
@@ -69,7 +69,10 @@ class SVM:
 
         total = len(y_true)
 
-        accuracy = np.sum(y_true == np.transpose(y_pred)) / total
+        print(np.transpose(y_pred))
+        print(y_true)
+
+        accuracy = np.sum(y_true == y_pred) / total
         return accuracy
 
     def predict(self, X):

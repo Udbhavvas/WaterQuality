@@ -9,18 +9,18 @@ from sklearn.model_selection import train_test_split
 
 
 ##################
-n_pts = 1000
-np.random.seed(0)
+n_pts = 50
+np.random.seed()
 Xa = np.array([np.random.normal(8, 1.75, n_pts),
-              np.random.normal(6, 1.75, n_pts)]).T
-Xb = np.array([np.random.normal(15, 1.75, n_pts),
               np.random.normal(15, 1.75, n_pts)]).T
+Xb = np.array([np.random.normal(15, 1.75, n_pts),
+              np.random.normal(6, 1.75, n_pts)]).T
 
 X = np.vstack((Xa, Xb))
 negative_ones = np.full((1, n_pts), -1)
 #print(y)
 positive_ones = np.full((1, n_pts), 1)
-Y = np.matrix(np.append(negative_ones, positive_ones)).T
+Y = np.matrix(np.append(negative_ones, positive_ones))
  
 
 #Class 1 X and Y values
