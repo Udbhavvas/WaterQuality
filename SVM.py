@@ -39,9 +39,19 @@ class SVM:
                 V = np.insert(V, 0, [1])
                 # 1 x1 x2
                 #print(V)
-                if y[idx] * (np.dot(self.w,np.transpose(V))) < 1:
-                    #                     y[1] * V[(1 + p) x 1]
-                    hinge_loss_gradient = y[idx] * V
+                condition = y[idx] * (np.dot(self.w,np.transpose(V)))
+                #condition just says whether the classification matches label; if match, con =1; if not, con =-1
+                if condition < 1:
+                    # y[1] * V[(1 + p) x 1]
+
+                    
+                    theta * X
+                    ---------------  * theta = slack
+                    || theta || ^ 2
+                    slack = sqrt(sum((x - np.dot(theta,x)) ^ 2)))
+
+
+                    1 - y (theta * x) - || slack ||
 
                     #self.w = self.w - self.learning_rate * (hinge_loss_gradient)
                     self.w = self.w + np.multiply(self.learning_rate, hinge_loss_gradient)
