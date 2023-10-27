@@ -9,11 +9,11 @@ from sklearn.model_selection import train_test_split
 
 
 ##################
-n_pts = 50
+n_pts = 1000
 np.random.seed()
 Xa = np.array([np.random.normal(13, 1.75, n_pts),
               np.random.normal(10, 1.75, n_pts)]).T
-Xb = np.array([np.random.normal(15, 1.75, n_pts),
+Xb = np.array([np.random.normal(5, 1.75, n_pts),
               np.random.normal(6, 1.75, n_pts)]).T
 
 X = np.vstack((Xa, Xb))
@@ -22,16 +22,16 @@ negative_ones = np.full((1, n_pts), -1)
 positive_ones = np.full((1, n_pts), 1)
 Y = np.append(negative_ones, positive_ones)
  
-
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.5, random_state=123, shuffle=True)
 #Class 1 X and Y values
 
-Class1 = [X[:n_pts,0], X[:n_pts,1]]
+Class1 = [X_test[:n_pts,0], X_test[:n_pts,1]]
 plt.scatter(Class1[0], Class1[1])
 #plt.scatter(X[:n_pts,0], X[:n_pts,1])
 
 #CLass 2 X and Y values
 
-Class2 = [X[n_pts:,0], X[n_pts:,1]]
+Class2 = [X_test[n_pts:,0], X_test[n_pts:,1]]
 plt.scatter(Class2[0], Class2[1])
 
 print("SDSDSDDS")
@@ -43,10 +43,10 @@ print("SDSDSDDS")
 #Class1[0] Class2[0]
 svm = SVM.SVM(learning_rate=0.01, epochs=6000)
 print("REACHED THIS FAR1")
-svm.train(X,Y)
+svm.train(X_train,y_train)
 print("REACHED THIS FAR2")
-y_pred = svm.predict(X)
-print(f"accuracy = {svm.accuracy(Y, y_pred)}")
+y_pred = svm.predict(X_test)
+print(f"accuracy = {svm.accuracy(y_test, y_pred)}")
 
 
 
