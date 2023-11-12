@@ -37,31 +37,29 @@ class SVM:
             for idx, V in enumerate(X):
                 # Use numpy.insert() to add the value at the front (position 0)
                 V = np.insert(V, 0, [1])
-
-        
-                condition = y[idx] * (np.dot(self.w,np.transpose(V)))
-                #condition just says whether the classification matches label; if match, con =1; if not, con =-1
-
-                slack = np.dot(self.w, V) / 
-                    # y[1] * V[(1 + p) x 1]
-                    
-                    # theta * X
-                    # ---------------  * theta = distance vector
-                    # || theta || ^ 2
-                    # slack = || distance vector|| = theta * x
-                    #                                ----------     +/-   1
-                    #                                || theta ||
-
-                    # 1 - y (theta * x) - || slack ||
-                                ^
-                                |
-                                |
-                                |
-                    <--------------------------------------->
+                # 1 x1 x2
+                #print(V)
+                if y[idx] * (np.dot(self.w,np.transpose(V))) < 1:
+                    #                     y[1] * V[(1 + p) x 1]
                     hinge_loss_gradient = y[idx] * V
+
+                    #self.w = self.w - self.learning_rate * (hinge_loss_gradient)
                     self.w = self.w + np.multiply(self.learning_rate, hinge_loss_gradient)
+                    #self.b = self.b + self.learning_rate * y[idx]
+
 
         self.b = self.w[0]
+
+         # Magic numberr working for b           
+        #self.b = 23*(-1 * self.w[1])
+
+        #[theta1 theta2] [x y]
+        #theta1*x + theta2*y = 0
+
+        #[theta0 theta1 theta2] [1 x y]
+        
+        #theta0 + theta1 * x + theta2 * y = 0
+        #y = -(theta1/theta2) * x - theta0/theta2
 
 
     def accuracy(self, y_true, y_pred):
@@ -93,4 +91,3 @@ class SVM:
 
         # X.shape[0]
         return 0
-            
