@@ -43,24 +43,10 @@ class SVM:
                     #                     y[1] * V[(1 + p) x 1]
                     hinge_loss_gradient = y[idx] * V
 
-                    #self.w = self.w - self.learning_rate * (hinge_loss_gradient)
                     self.w = self.w + np.multiply(self.learning_rate, hinge_loss_gradient)
-                    #self.b = self.b + self.learning_rate * y[idx]
 
 
         self.b = self.w[0]
-
-         # Magic numberr working for b           
-        #self.b = 23*(-1 * self.w[1])
-
-        #[theta1 theta2] [x y]
-        #theta1*x + theta2*y = 0
-
-        #[theta0 theta1 theta2] [1 x y]
-        
-        #theta0 + theta1 * x + theta2 * y = 0
-        #y = -(theta1/theta2) * x - theta0/theta2
-
 
     def accuracy(self, y_true, y_pred):
         y_true = np.array(y_true)
@@ -86,8 +72,5 @@ class SVM:
 
     def SVM_train_test_split(self, X, y, test_size, random_state):
         
-        # if random_state is not None:
-        #     np.random.seed(random_state)
 
-        # X.shape[0]
         return 0
