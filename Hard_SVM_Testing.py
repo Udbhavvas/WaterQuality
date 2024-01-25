@@ -47,7 +47,7 @@ print("SDSDSDDS")
 #Class1[0] Class2[0]
 svm = SVM.SVM(learning_rate=0.01, epochs=6000)
 print("REACHED THIS FAR1")
-svm.train(X_train,Y_train)
+svm.train(X_train,Y_train, kernel = "quadratic")
 print("REACHED THIS FAR2")
 y_pred = svm.predict(X_test)
 print(f"accuracy = {svm.accuracy(Y_test, y_pred)}")

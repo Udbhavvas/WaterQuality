@@ -39,7 +39,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 # Instatiate SVM object
 SVM_instance = SVM.SVM()
 
-SVM_instance.train(X_train, y_train)
+SVM_instance.train(X_train, y_train, kernel = "quadratic")
 
 predictions = SVM_instance.predict(X_test)
 

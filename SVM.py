@@ -14,8 +14,35 @@ class SVM:
         # Edits hyperparameters
         
         pass
+
+    def kernel_fun(self, X, kernel):
+        new_X = None
+        
+        if kernel == "quadratic":
+            X_trans = X
+           
+            for index, value in enumerate(X):
+                np.append(value, value[0]**2 )
+                np.append(value, value[1]**2 )
+                np.append(value, value[1] * value[0] * np.sqrt(2))
+
+                #np.append(value, value[1]**2 + value[1**3])  # Values chosen here will be decided by the correlation test
+                #np.append(value, value[0]**3)
+
+            new_X = X_trans
+
+        if kernel == "radial basis":
+            print("wtfffff")
+
+        if kernel == "polynomial":
+            print("Musu's mom")
+
+        if kernel == "Udbav's Mom":
+            print("Rosa Parks")
+                
+        return new_X
     
-    def train(self, X, y):
+    def train(self, X, y, kernel):
         # Calibrates model on input data
         # X is an NxM matrix, where N is the number of samples, and M is the number of features
         # y is an N dimensional array of labels for the samples in X
@@ -31,6 +58,13 @@ class SVM:
         self.w = np.random.random_sample(num_features + 1)
         
         self.w = self.w * 2 - 1
+
+        # If the data is not linear, then call kernel function on data
+        if kernel != "Linear":
+            X = self.kernel_fun(X, kernel)
+            
+        
+
 
         # Find hyperplane using stochastic gradient descent with hinge loss
         for _ in range(self.epochs):
