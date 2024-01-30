@@ -9,13 +9,24 @@ from sklearn.model_selection import train_test_split
 
 
 ##################
-# I AM VIVEK RAO AND I A G++++AY
-n_pts = 50
+
+n_pts = 100
 np.random.seed()
-Xa = np.array([np.random.normal(9, 1.25, n_pts),
-              np.random.normal(9, 1.25, n_pts)]).T
-Xb = np.array([np.random.normal(12, 1.25, n_pts),
-              np.random.normal(12, 1.25, n_pts)]).T
+Xa = np.array([np.random.normal(75, 1.5, n_pts),
+              np.random.normal(65, 1.5, n_pts)]).T
+
+# Line segment parameters
+x_start, y_start = 50, 50
+x_end, y_end = 100, 50
+
+# Generate Xb with points clustered around the line segment
+Xb = np.array([
+    np.linspace(x_start, x_end, n_pts),
+    np.linspace(y_start, y_end, n_pts) + np.random.normal(0, 1.5, n_pts)
+]).T
+
+#Xb = np.array([np.random.normal(12, 1.25, n_pts),
+              #np.random.normal(12, 1.25, n_pts)]).T
 
 X = np.vstack((Xa, Xb))
 negative_ones = np.full((1, n_pts), -1)
@@ -74,7 +85,7 @@ y_start = (-1  * w1/w2) * (-5) - b/w2
 y_end = (-1 * w1/w2) * (20) - b/w2
 
 
-########################
+#######################
 plt.plot([-5, 20], [y_start, y_end])
 
 #plt.Axes.plot([-5, 20], [y_start, y_end], linestyle='-', color='blue', label='My Line')
